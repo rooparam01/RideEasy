@@ -70,7 +70,10 @@ public class JwtTokenGeneratorFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
 
-        return !request.getServletPath().equals("/customers/signIn");
+        String servletPath = request.getServletPath();
+        return !(servletPath.equals("/customers/signIn") ||
+                servletPath.equals("/drivers/signIn") ||
+                servletPath.equals("/admin/signIn"));
     }
 
 
